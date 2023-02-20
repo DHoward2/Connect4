@@ -107,7 +107,6 @@ function handleClick(evt) {
   if (y === null) {
     return;
   }
-  console.log(y, x);
 
   // place piece in board and add to HTML table
   // TODO: add line to update in-memory board
