@@ -69,7 +69,10 @@ function findSpotForCol(x) {
     }
     y -= 1;
   }
-  return y;
+  if(y > -1){
+    return y;
+  }
+  return null;
       
 }
 
