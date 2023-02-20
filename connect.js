@@ -90,6 +90,7 @@ function placeInTable(y, x) {
 
 function endGame(msg) {
   // TODO: pop up alert message
+  return alert(msg);
 }
 
 /** handleClick: handle click of column top to play piece */
@@ -109,6 +110,7 @@ function handleClick(evt) {
   // TODO: add line to update in-memory board
   placeInTable(y, x);
   board[y][x] = currPlayer;
+//   console.log(board);
 
   // check for win
   if (checkForWin()) {
@@ -117,7 +119,9 @@ function handleClick(evt) {
 
   // check for tie
   // TODO: check if all cells in board are filled; if so call, call endGame
-
+  if(checkForTie()){
+    return endGame(`It's TIED!!!`);
+  };
   // switch players
   // TODO: switch currPlayer 1 <-> 2
   if(currPlayer === 2){
@@ -128,11 +132,15 @@ function handleClick(evt) {
 }
 
 function checkForTie() {
-    return board.every(function(val){
-        if(val !== null){
-            return endGame();
-        }
-    });
+    const bottom = board[5].every((cell) => cell !== null);
+    const row5 = board[4].every((cell) => cell !== null);
+    const row4 = board[3].every((cell) => cell !== null);
+    const row3 = board[2].every((cell) => cell !== null);
+    const row2 = board[1].every((cell) => cell !== null);
+    const top = board[0].every((cell) => cell !== null);
+    if(top && row2 && row3 && row4 && row5 && bottom){
+        return true;
+    }
 }
 
 /** checkForWin: check board cell-by-cell for "does a win start here?" */
